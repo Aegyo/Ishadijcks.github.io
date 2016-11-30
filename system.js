@@ -99,6 +99,10 @@ var player = {
 	totalClicks: 0,
 	totalEggsHatched: 0,
 	totalMineCoins: 0,
+	swarm: {
+		route: 0,
+		pokemon: "",
+	}
 }
 
 var curEnemy = {
@@ -817,40 +821,21 @@ var generatePokemon = function(route){
 	attackInterval = setInterval(pokemonsAttack,1000);
 	route = route || 1;
 	var decrease = 0;
-	var randomPokemon;
+	var randomPokemon = "";
 	var legendary = generateLegendary();
 	if( legendary){
 		randomPokemon = getPokemonByName(legendary);
 	}
 	else {
-
-		if (route <= 25){
-
-			if(isActive("Normal Rod") && pokemonsPerRoute[route].water != undefined){
-				if(pokemonsPerRoute[route].land != undefined){
-					var possiblePokemons = pokemonsPerRoute[route].land.concat(pokemonsPerRoute[route].water);
-				} else {
-					var possiblePokemons = pokemonsPerRoute[route].water;
-				}
-			} else {
-				if(route == 19 || route == 20){
-					route = 18;
-				}
-				var possiblePokemons = pokemonsPerRoute[route].land;
+		if (route == player.swarm.route) {
+			if (Math.random() < 0.5) {
+				randomPokemon = player.swarm.pokemon
 			}
-
-
-
-			var rand = Math.floor(Math.random()*possiblePokemons.length);
-			randomPokemonName = possiblePokemons[rand]
 		}
-
-		else {
-			var rand = Math.floor(Math.random()*pokemonList.length);
-			randomPokemonName = pokemonList[rand].name;
+		if (randomPokemon == ""){
+			randomPokemonName = chooseRandomPokemon(route);
+			randomPokemon = getPokemonByName(randomPokemonName);
 		}
-
-		randomPokemon = getPokemonByName(randomPokemonName);
 	}
 
 	//console.log(pokemonList);
@@ -872,7 +857,30 @@ var generatePokemon = function(route){
 	return randomPokemon;
 }
 
+var chooseRandomPokemon = function(route){
 
+	if (route <= 25){
+		if(isActive("Normal Rod") && pokemonsPerRoute[route].water != undefined){
+			if(pokemonsPerRoute[route].land != undefined){
+				var possiblePokemons = pokemonsPerRoute[route].land.concat(pokemonsPerRoute[route].water);
+			} else {
+				var possiblePokemons = pokemonsPerRoute[route].water;
+			}
+		} else {
+			if(route == 19 || route == 20){
+				route = 18;
+			}
+			var possiblePokemons = pokemonsPerRoute[route].land;
+		}
+		var rand = Math.floor(Math.random()*possiblePokemons.length);
+		randomPokemonName = possiblePokemons[rand]
+	} else {
+		var rand = Math.floor(Math.random()*pokemonList.length);
+		randomPokemonName = pokemonList[rand].name;
+	}
+
+	return randomPokemonName;
+}
 
 var getPokemonByName = function(name){
 	for( var i = 0; i<pokemonList.length; i++){
@@ -953,4 +961,51 @@ var numberWithCommas = function(x){
 
 var numberNoCommas = function(x){
 	return parseFloat(String(x).replace(/,/g, ''));
+}
+
+var newSwarm = function(){
+	var water = false;
+	var d = new Date();
+	var dateSeed = Number(d.getYear() + 1000*d.getMonth()*d.getDate() + 100000*d.getDate());
+	var pokeRand = seededRand(dateSeed);
+	var routeRand = seededRand(pokeRand*d.getDate());
+
+	var possibleSwarms = [];
+	for (var i=0; i<pokemonList.length; i++) {
+		if (!routePokemon(pokemonList[i].name)) {
+			possibleSwarms.push(pokemonList[i]);
+		}
+	}
+
+	var id = Math.floor(possibleSwarms.length * pokeRand/233280)
+	player.swarm.pokemon = possibleSwarms[id];
+	
+	for (var i=0; i<player.swarm.pokemon.type.length; i++) {
+		if (player.swarm.pokemon.type[i] == "Water") {
+			water = true;
+		}
+	}
+	if (water) {
+		player.swarm.route = Math.floor(3 * routeRand/233280) + 19
+	} else {
+		var r = Math.ceil(13 * routeRand/233280) + 9;
+		if (r>18) {
+			r += 3;
+		}
+		player.swarm.route = r;
+	}
+
+}
+
+var routePokemon = function(pokemonName) {
+	for (var route in pokemonsPerRoute) {
+		for (var loc in pokemonsPerRoute[route]) {
+			for (var i=0; i<pokemonsPerRoute[route][loc].length; i++) {
+				if (pokemonsPerRoute[route][loc][i] == pokemonName) {
+					return true;
+				}
+			}
+		}
+	}
+	return false;
 }

@@ -30,6 +30,9 @@ var load = function(){
 
 	player.route = Math.min(25,player.route);
 	player.lastSaved = new Date().getTime();
+	if (player.swarm.route == 0) {
+		newSwarm();
+	}
 
     if(player.starter === "none"){
         $("#pickStarter").modal('show');

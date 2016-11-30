@@ -221,6 +221,7 @@ var dailyReset = function(){
 	player.questDifficulty = 1;
 	player.questCompletedToday = 0;
 	generateDailyDeals();
+	newSwarm();
 	console.log("Rise and shine, it's a new day!");
 }
 
