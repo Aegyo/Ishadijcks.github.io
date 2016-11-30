@@ -185,23 +185,27 @@ var updateRoute = function(){
 	// }
 
 	for(var i = 1; i< 26; i++){
+		var r="";
+		var colour="";
+		if (i == 19){
+			r = "19a";
+		} else {
+			r = i;
+		}
 		if(player.routeKills[i] >= player.routeKillsNeeded){
-			if( i == 19){
-				$("#route_"+i+"a").attr('style', "fill:#FCB612" );	
-			}
-			$("#route_"+i).attr('style', "fill:#FCB612" );
+			colour="#FCB612";
 		}
 		else if (accessToRoute(i)){
-			if( i == 19){
-				$("#route_"+i+"a").attr('style', "fill:#D89803");
-			}
-			$("#route_"+i).attr('style', "fill:#D89803");
+			colour="#D89803";
 		}
 		else {
-			if( i == 19){
-				$("#route_"+i+"a").attr('style', "fill:#BD1952");	
-			}
-			$("#route_"+i).attr('style', "fill:#BD1952");	
+			colour="#BD1952";	
+		}
+		
+		$("#route_"+r).attr('style', "fill:"+colour);
+
+		if (rand=Math.random()<0.1 && i == player.swarm.route){
+			$("#route_"+r).attr('style', "fill:#FF00FF")
 		}
 		
 	}
@@ -212,6 +216,8 @@ var updateRoute = function(){
 			$("#route_"+player.route+"a").attr('style', "fill:green" );	
 		}
 	}
+
+
 }
 
 // Update the health of the current enemy

@@ -11,6 +11,14 @@
     min-width: 1032px;
 }
 
+.route{
+	-webkit-transition: fill .7s ease-out;
+	-moz-transition: fill .7s ease-out;
+	-o-transition: fill .7s ease-out;
+	transition: fill .7s ease-out;
+	fill:#fcb612;
+}
+
 .mineInventoryItem {
 	width: 50px;
 }
