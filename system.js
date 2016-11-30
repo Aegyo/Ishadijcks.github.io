@@ -826,8 +826,6 @@ var generatePokemon = function(route){
 	var legendary = generateLegendary();
 	var rodCheck = true;
 
-	
-
 	if( legendary){
 		randomPokemon = getPokemonByName(legendary);
 	}
@@ -1007,7 +1005,6 @@ var newSwarm = function(){
 		}
 		player.swarm.route = r;
 	}
-
 }
 
 var routePokemon = function(pokemonName) {

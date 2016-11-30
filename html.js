@@ -216,8 +216,6 @@ var updateRoute = function(){
 			$("#route_"+player.route+"a").attr('style', "fill:green" );	
 		}
 	}
-
-
 }
 
 // Update the health of the current enemy
