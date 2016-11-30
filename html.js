@@ -159,7 +159,7 @@ var updateRoute = function(){
 		oakExplainTown();
 	}
 
-	if (player.routeKills[9] == player.routeKillsNeeded){
+	if (player.routeKills[9] >= player.routeKillsNeeded){
 		oakExplainSwarms();
 	}
 
