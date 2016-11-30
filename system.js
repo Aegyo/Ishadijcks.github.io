@@ -824,12 +824,21 @@ var generatePokemon = function(route){
 	var decrease = 0;
 	var randomPokemon = "";
 	var legendary = generateLegendary();
+	var rodCheck = true;
+
+	
+
 	if( legendary){
 		randomPokemon = getPokemonByName(legendary);
 	}
 	else {
 		if (route == player.swarm.route) {
-			if (Math.random() < 0.5) {
+			if (route>18 && route<22){
+				if (!isActive("Normal Rod")){
+					rodCheck = false;
+				}
+			}
+			if (Math.random() < 0.5 && rodCheck) {
 				randomPokemon = player.swarm.pokemon
 			}
 		}
