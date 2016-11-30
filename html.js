@@ -159,6 +159,10 @@ var updateRoute = function(){
 		oakExplainTown();
 	}
 
+	if (player.routeKills[9] == player.routeKillsNeeded){
+		oakExplainSwarms();
+	}
+
 	var html = "Route "+player.route;
 	if (routeCompletedShiny(player.route)){
 		html += "<a title='You have caught all shiny Pokemon on this route!'><img id='alreadyCaughtImage' src='images/shinyPokeball.PNG'></a>";

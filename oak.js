@@ -49,10 +49,22 @@ var oakExplainDungeons = function(){
 	}
 }
 
+var oakExplainSwarms = function(){
+	if(!player.swarmExplain){
+		html = "";
+		html += "<div class='row'><img class='oakImage' src='images/oak/oak.png'</div>";
+		html += "<div class ='row'><p class = 'oakText'>For unknown reasons, pokemon appear to be swarming on certain routes.<br>The swarm patterns change every day, come see me in Pallet Town for today's information.</p>";
+		$("#oakBody").html(html);
+		$("#oakModal").modal('show');
+		player.swarmExplain = 1;
+	}
+}
+
 var oakExplainAgain = function () {
 	if(player.mapExplain || player.townExplain || player.dungeonExplain) {
 		var html = "<div class='row'><img class='oakImage' src='images/oak/oak.png'</div>";
 		html +="<div class='row' style='padding-top:20px'>";
+		html +="<div class='row'><p class='oakText'>There appears to be a lot of activity on route "+player.swarm.route+" today...</p>";
 		html +="<div class='col-sm-offset-4'>";
 		if (player.mapExplain) {
 

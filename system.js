@@ -38,6 +38,7 @@ var player = {
 	mapExplain: 0,
 	townExplain: 0,
 	dungeonExplain: 0,
+	swarmExplain: 0,
 	inventoryList: [],
 	typeShards: Array.apply(null, Array(18)).map(Number.prototype.valueOf,0),
 	notEffectiveTypeBonus: Array.apply(null, Array(18)).map(Number.prototype.valueOf,0),
