@@ -185,13 +185,7 @@ var updateRoute = function(){
 	// }
 
 	for(var i = 1; i< 26; i++){
-		var r="";
 		var colour="";
-		if (i == 19){
-			r = "19a";
-		} else {
-			r = i;
-		}
 		if(player.routeKills[i] >= player.routeKillsNeeded){
 			colour="#FCB612";
 		}
@@ -202,10 +196,13 @@ var updateRoute = function(){
 			colour="#BD1952";	
 		}
 		
-		$("#route_"+r).attr('style', "fill:"+colour);
+		$("#route_"+i).attr('style', "fill:"+colour);
+		if (i == 19){
+			$("#route_19a").attr('style', "fill:"+colour);
+		}
 
 		if (rand=Math.random()<0.1 && i == player.swarm.route){
-			$("#route_"+r).attr('style', "fill:#FF00FF")
+			$("#route_"+i).attr('style', "fill:#FF00FF")
 		}
 		
 	}
