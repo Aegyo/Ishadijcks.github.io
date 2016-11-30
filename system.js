@@ -980,11 +980,11 @@ var newSwarm = function(){
 	var pokeRand = seededRand(dateSeed);
 	var routeRand = seededRand(pokeRand*d.getDate());
 	var possibleSwarms = [];
-	var legends = ["Articuno", "Zapdos", "Moltres", "Mewtwo", "Mew"];
+	var illegal = ["Articuno", "Zapdos", "Moltres", "Mewtwo", "Mew"];
 
 	for (var i=0; i<pokemonList.length; i++) {
 		if (!routePokemon(pokemonList[i].name)) {
-			if(!legends.includes(pokemonList[i].name)){
+			if(!illegal.includes(pokemonList[i].name)){
 				possibleSwarms.push(pokemonList[i]);
 			}
 		}
