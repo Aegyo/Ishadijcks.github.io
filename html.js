@@ -201,7 +201,7 @@ var updateRoute = function(){
 			$("#route_19a").attr('style', "fill:"+colour);
 		}
 
-		if (rand=Math.random()<0.1 && i == player.swarm.route){
+		if (rand=Math.random()<0.1 && i == player.swarm.route && player.route != player.swarm.route){
 			$("#route_"+i).attr('style', "fill:#FF00FF")
 			var _colour = colour;
 			var _i = i;
