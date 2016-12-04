@@ -118,13 +118,13 @@ var curEnemy = {
 var saveFrame;
 
 window.onload = function(){
-	if (window.location.hostname == "ishadijcks.github.io"){
+	//if (window.location.hostname == "ishadijcks.github.io"){
 		console.log("loading from iframe");
 		saveFrame.postMessage(JSON.stringify({key: 'player', method: "get"}), "*");
-	} else {
-		console.log("loading from this localStorage");
-		initGame(localStorage.getItem("player"));
-	}
+	//} else {
+	//	console.log("loading from this localStorage");
+	//	initGame(localStorage.getItem("player"));
+	//}
 }
 
 initGame = function(savegame){
@@ -159,7 +159,7 @@ $(document).ready(function(){
 	//$('#changeLogModal').modal('show');
 
 	//Save management
-	$("body").append("<iframe id='saveLocation' style='display:none' src='https://ishadijcks.github.io/iframe.html'></iframe>")
+	$("body").append("<iframe id='saveLocation' style='display:none' src='https://rawgit.com/Aegyo/ishadijcks.github.io/share-save-working-example/iframe.html'></iframe>")
 	saveFrame = document.getElementById('saveLocation').contentWindow
 
 	window.onmessage = function(e){
