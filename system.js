@@ -153,6 +153,7 @@ initGame = function(savegame){
 }
 
 var checkSaves = function(){
+	console.log("checking");
 	for (var i=0; i<2; i++){
 		if (saves[i] == 0){
 			initGame(saves[i-1]);
@@ -208,11 +209,11 @@ $(document).ready(function(){
 
 		if (saves.length == 1){
 			var protocol = "";
-			if (window.location.protocol = "http:"){
+			if (window.location.protocol == "http:"){
 				protocol = "s";
 			}
 			$("body").append("<iframe id='otherSave' style='display:none' src='http"+protocol+"://rawgit.com/Aegyo/Ishadijcks.github.io/share-save-rawgit-example/iframe.html'></iframe>").load(function(){
-				document.getElementById('otherSave').contentWindow.postMessage(JSON.stringify({key: 'player', method: "get", reason: "load"}), "*");
+				document.getElementById('otherSave').contentWindow.postMessage(JSON.stringify({key: 'player', method: "get"}), "*");
 			});
 		} else if (saves[0] == 0 && saves[1] == 0){
 			initGame(savegame);
