@@ -11,6 +11,10 @@
     min-width: 1032px;
 }
 
+.save td{
+	padding: 0 15px 0 15px;
+}
+
 .mineInventoryItem {
 	width: 50px;
 }
