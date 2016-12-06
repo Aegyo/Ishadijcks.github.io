@@ -120,7 +120,7 @@ var saveFrame, saves = [];
 window.onload = function(){
 	//if (window.location.hostname == "ishadijcks.github.io"){
 		console.log("loading from iframe");
-		saveFrame.postMessage(JSON.stringify({key: 'player', method: "get", reason: "load"}), "*");
+		saveFrame.postMessage(JSON.stringify({key: 'player', method: "get"}), "*");
 	//} else {
 	//	console.log("loading from this localStorage");
 	//	initGame(JSON.parse(localStorage.getItem("player")));
@@ -194,6 +194,7 @@ $(document).ready(function(){
 
 	window.onmessage = function(e){
 		var savegame = JSON.parse(e.data)
+		console.log(savegame);
 
 		if (savegame && savegame.version >= 0.93){
 			initGame(savegame);
