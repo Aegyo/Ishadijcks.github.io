@@ -162,12 +162,22 @@ var checkSaves = function(){
 	}
 	
 	for (var i=0; i<2; i++){
+		var uniqueShiny = 0;
+		for (var j=0; j<saves[i].caughtPokemonList.length; j++){
+			if (saves[i].caughtPokemonList[j].shiny){
+				uniqueShiny++;
+			}
+		}
+		var lastHere = new Date(saves[i].lastSaved).toLocaleDateString();
+
 		var info = "<table class='save'>";
-
-		info += "<tr> <td>Version</td> <td>" + saves[i].version + "</td> </tr>";
-		info += "<tr> <td>Unique Caught</td> <td>" + saves[i].caughtPokemonList.length + "</td> </tr>";
-		info += "<tr> <td>Total Shinies Caught</td> <td>" + saves[i].shinyPoints + "</td> </tr>";
-
+			info += "<tr> <td>Version</td> <td>" + saves[i].version + "</td> </tr>";
+			info += "<tr> <td>Last Seen</td> <td>" + lastHere + "</td> </tr>";
+			info += "<tr> <td>Unique Caught</td> <td>" + saves[i].caughtPokemonList.length + "</td> </tr>";
+			info += "<tr> <td>Unique Shinies Caught</td> <td>" + uniqueShiny + "</td> </tr>";
+			info += "<tr> <td>Total Hatched</td> <td>" + saves[i].totalBred + "</td> </tr>";
+			info += "<tr> <td>Total Caught</td> <td>" + saves[i].totalCaught+ "</td> </tr>";
+			info += "<tr> <td>Total Underground Diamonds</td> <td>" + saves[i].totalMineCoins + "</td> </tr>";
 		info += "</table>"
 
 		info += "<button class='load btn btn-primary' id='"+(i+1)+"'>Load</button>"
