@@ -10,7 +10,9 @@ var save = function(){
 	player.lastSeen = new Date().getDate();
 	if(canSave){
 		localStorage.setItem("player", JSON.stringify(player));
-		saveFrame.postMessage(JSON.stringify({key: 'player', method: "set", data: player}), "*");
+		if (saveFrame){
+			saveFrame.postMessage(JSON.stringify({key: 'player', method: "set", data: player}), "*");
+		}
 	}
 
 	var tmp = new Date().getTime();
