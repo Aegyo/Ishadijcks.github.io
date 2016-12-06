@@ -189,7 +189,7 @@ $(document).ready(function(){
 	//$('#changeLogModal').modal('show');
 
 	//Save management
-	$("body").append("<iframe id='saveLocation' style='display:none' src='https://http://rawgit.com/Aegyo/Ishadijcks.github.io/share-save-rawgit-example/iframe.html'></iframe>")
+	$("body").append("<iframe id='saveLocation' style='display:none' src='https://rawgit.com/Aegyo/Ishadijcks.github.io/share-save-rawgit-example/iframe.html'></iframe>")
 	saveFrame = document.getElementById('saveLocation').contentWindow
 
 	window.onmessage = function(e){
@@ -210,7 +210,7 @@ $(document).ready(function(){
 			if (window.location.protocol = "http:"){
 				protocol = "s";
 			}
-			$("body").append("<iframe id='otherSave' style='display:none' src='http"+protocol+"://ishadijcks.github.io/iframe.html'></iframe>").load(function(){
+			$("body").append("<iframe id='otherSave' style='display:none' src='http"+protocol+"://rawgit.com/Aegyo/Ishadijcks.github.io/share-save-rawgit-example/iframe.html'></iframe>").load(function(){
 				document.getElementById('otherSave').contentWindow.postMessage(JSON.stringify({key: 'player', method: "get", reason: "load"}), "*");
 			});
 		} else if (saves[0] == 0 && saves[1] == 0){
