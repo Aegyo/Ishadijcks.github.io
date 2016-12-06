@@ -161,7 +161,7 @@ var checkSaves = function(){
 		}
 	}
 	
-	for (i=0; i<2; i++){
+	for (var i=0; i<2; i++){
 		var info = "<table class='save'>";
 
 		info += "<tr> <td>Version</td> <td>" + saves[i].version + "</td> </tr>";
@@ -175,8 +175,8 @@ var checkSaves = function(){
 		$("#loadModal #save"+(i+1)).html(info);
 
 		$("#"+(i+1)+".load").on("click", function(){
-			console.log(saves[i]);
-			initGame(saves[i]);
+			var _i = +$(this).attr("id")
+			initGame(saves[_i]);
 			$("#loadModal").modal("hide");
 		});
 	}
