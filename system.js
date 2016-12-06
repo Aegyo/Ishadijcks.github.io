@@ -192,12 +192,12 @@ $(document).ready(function(){
 	//$('#changeLogModal').modal('show');
 
 	//Save management
-	var protocol = "http";
 	if (window.location.protocol == "http:"){
-		protocol += "s";
+		$("body").append("<iframe id='saveLocation' style='display:none' onload='beginLoad()' src='https://rawgit.com/Aegyo/Ishadijcks.github.io/share-save-rawgit-example/iframe.html'></iframe>");
+		saveFrame = document.getElementById('saveLocation').contentWindow;
+	} else {
+		initGame(JSON.parse(localStorage.getItem("player")));
 	}
-	$("body").append("<iframe id='saveLocation' style='display:none' onload='beginLoad()' src='"+protocol+"://rawgit.com/Aegyo/Ishadijcks.github.io/share-save-rawgit-example/iframe.html'></iframe>")
-	saveFrame = document.getElementById('saveLocation').contentWindow
 
 	window.onmessage = function(e){
 		var savegame = JSON.parse(e.data)
