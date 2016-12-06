@@ -117,7 +117,7 @@ var curEnemy = {
 
 var saveFrame, saves = [];
 
-window.onload = function(){
+beginLoad = function(){
 	//if (window.location.hostname == "ishadijcks.github.io"){
 		console.log("loading from iframe");
 		saveFrame.postMessage(JSON.stringify({key: 'player', method: "get"}), "*");
@@ -190,7 +190,11 @@ $(document).ready(function(){
 	//$('#changeLogModal').modal('show');
 
 	//Save management
-	$("body").append("<iframe id='saveLocation' style='display:none' src='https://rawgit.com/Aegyo/Ishadijcks.github.io/share-save-rawgit-example/iframe.html'></iframe>")
+	var protocol = "http";
+	if (window.location.protocol == "http:"){
+		protocol += "s";
+	}
+	$("body").append("<iframe id='saveLocation' style='display:none' onload='beginLoad()' src='"+protocol+"://rawgit.com/Aegyo/Ishadijcks.github.io/share-save-rawgit-example/iframe.html'></iframe>")
 	saveFrame = document.getElementById('saveLocation').contentWindow
 
 	window.onmessage = function(e){
@@ -208,14 +212,11 @@ $(document).ready(function(){
 		}
 
 		if (saves.length == 1){
-			var protocol = "";
-			if (window.location.protocol == "http:"){
-				protocol = "s";
-			}
-			$("body").append("<iframe id='otherSave' style='display:none' src='http"+protocol+"://rawgit.com/Aegyo/Ishadijcks.github.io/share-save-rawgit-example/iframe.html'></iframe>").load(function(){
-				document.getElementById('otherSave').contentWindow.postMessage(JSON.stringify({key: 'player', method: "get"}), "*");
-			});
-		} else if (saves[0] == 0 && saves[1] == 0){
+			local = JSON.parse(localStorage.getItem("player")) || 0;
+			saves.push(local);
+		}
+
+		if (saves[0] == 0 && saves[1] == 0){
 			initGame(savegame);
 		} else {
 			checkSaves();
