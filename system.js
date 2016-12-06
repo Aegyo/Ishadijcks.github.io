@@ -198,6 +198,7 @@ $(document).ready(function(){
 
 		if (savegame && savegame.version >= 0.93){
 			initGame(savegame);
+			return
 		} else {
 			if(!savegame){
 				savegame = 0;
