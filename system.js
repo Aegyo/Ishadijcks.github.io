@@ -175,7 +175,7 @@ var checkSaves = function(){
 		$("#loadModal #save"+(i+1)).html(info);
 
 		$("#"+(i+1)+".load").on("click", function(){
-			var _i = +$(this).attr("id")
+			var _i = +$(this).attr("id") - 1;
 			initGame(saves[_i]);
 			$("#loadModal").modal("hide");
 		});
